@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			#app{
+				display:flex;
+			}
+			.con{
+				width:300px;height:300px;
+				margin:50px auto;
+				position:relative;
+			}
+			.box{
+				width:424px;height:424px;
+				border-radius: 212px;
+				display:flex;
+				flex-wrap: wrap;
+				animation: zhuan 2s linear infinite;
+				
+			}
+			
+			.box div:nth-child(1){
+				background-color: red;
+				border-radius: 30px 700%;
+				transform:rotate(0deg);
+				position: absolute;left: 62px;top:62px;
+				width:150px;height:150px;
+			}
+			.box div:nth-child(2){
+				background-color: blue;
+				border-radius: 30px 700%;
+				transform:rotate(72deg);
+				position: absolute;left: 190px;top:43px;
+				width:150px;height:150px;
+			}
+			.box div:nth-child(3){
+				background-color: yellow;
+				border-radius: 30px 700%;
+				transform:rotate(144deg);
+				position: absolute;left:245px;top:155px;
+				width:150px;height:150px;
+			}
+			.box div:nth-child(4){
+				background-color: #008080;
+				border-radius: 30px 700%;
+				position: absolute;left:155px;top:245px;
+				width:150px;height:150px;
+				transform:rotate(216deg);
+			}
+			.box div:nth-child(5){
+				background-color: #00FFFF;
+				border-radius: 30px 800%;
+				position: absolute;left: 42px;top:185px;
+				width:150px;height:150px;
+				transform:rotate(288deg);
+			}
+			.gun{
+				position:absolute;
+				width:10px;
+				height:300px;
+				background-color: gray;
+				border-radius:10px 10px 0 0/30px 30px 0 0 ;
+				left:208px;
+				top:212px;
+				z-index:-1;
+			}
+			
+			#laoda{
+				width:60px;height: 60px;
+				border-radius: 30px;
+				background-color: #000000;
+				position: absolute;left: 100px;top:100px;
+				animation: zhuan 2s linear infinite;
+			}
+			#laoda div:nth-child(1){
+				width:30px;height: 60px;
+				border-radius: 30px 0px 0px 30px;
+				background-color: #FFFFFF;
+				position: absolute;left:0px;top:0px;
+			}
+			#laoda div:nth-child(2){
+				width:30px;height: 30px;
+				border-radius: 30px;
+				background-color: #FFFFFF;
+				position: absolute;left:15px;top:0px;
+			}
+			#laoda div:nth-child(3){
+				width:30px;height: 30px;
+				border-radius: 30px;
+				background-color: #000000;
+				position: absolute;left:15px;top:30px;
+			}
+			#laoda div:nth-child(4){
+				width:10px;height: 10px;
+				border-radius: 5px;
+				background-color: #000000;
+				position: absolute;left:25px;top:10px;
+			}
+			#laoda div:nth-child(5){
+				width:10px;height: 10px;
+				border-radius: 5px;
+				background-color: #FFFFFF;
+				position: absolute;left:25px;top:40px;
+			}
+			#laoe{
+				width:60px;height: 60px;
+				border-radius: 30px;
+				background-color: #000000;
+				position: absolute;left: 235px;top:90px;
+				animation: zhuan 2s linear infinite;
+			}
+			#laoe div:nth-child(1){
+				width:30px;height: 60px;
+				border-radius: 30px 0px 0px 30px;
+				background-color: #FFFFFF;
+				position: absolute;left:0px;top:0px;
+			}
+			#laoe div:nth-child(2){
+				width:30px;height: 30px;
+				border-radius: 30px;
+				background-color: #FFFFFF;
+				position: absolute;left:15px;top:0px;
+			}
+			#laoe div:nth-child(3){
+				width:30px;height: 30px;
+				border-radius: 30px;
+				background-color: #000000;
+				position: absolute;left:15px;top:30px;
+			}
+			#laoe div:nth-child(4){
+				width:10px;height: 10px;
+				border-radius: 5px;
+				background-color: #000000;
+				position: absolute;left:25px;top:10px;
+			}
+			#laoe div:nth-child(5){
+				width:10px;height: 10px;
+				border-radius: 5px;
+				background-color: #FFFFFF;
+				position: absolute;left:25px;top:40px;
+			}
+			#laosan{
+				width:60px;height: 60px;
+				border-radius: 30px;
+				background-color: #000000;
+				position: absolute;left: 280px;top:200px;
+				animation: zhuan 2s linear infinite;
+			}
+			#laosan div:nth-child(1){
+				width:30px;height: 60px;
+				border-radius: 30px 0px 0px 30px;
+				background-color: #FFFFFF;
+				position: absolute;left:0px;top:0px;
+			}
+			#laosan div:nth-child(2){
+				width:30px;height: 30px;
+				border-radius: 30px;
+				background-color: #FFFFFF;
+				position: absolute;left:15px;top:0px;
+			}
+			#laosan div:nth-child(3){
+				width:30px;height: 30px;
+				border-radius: 30px;
+				background-color: #000000;
+				position: absolute;left:15px;top:30px;
+			}
+			#laosan div:nth-child(4){
+				width:10px;height: 10px;
+				border-radius: 5px;
+				background-color: #000000;
+				position: absolute;left:25px;top:10px;
+			}
+			#laosan div:nth-child(5){
+				width:10px;height: 10px;
+				border-radius: 5px;
+				background-color: #FFFFFF;
+				position: absolute;left:25px;top:40px;
+			}
+			#laoshi{
+				width:60px;height: 60px;
+				border-radius: 30px;
+				background-color: #000000;
+				position: absolute;left: 195px;top:285px;
+				animation: zhuan 2s linear infinite;
+			}
+			#laoshi div:nth-child(1){
+				width:30px;height: 60px;
+				border-radius: 30px 0px 0px 30px;
+				background-color: #FFFFFF;
+				position: absolute;left:0px;top:0px;
+			}
+			#laoshi div:nth-child(2){
+				width:30px;height: 30px;
+				border-radius: 30px;
+				background-color: #FFFFFF;
+				position: absolute;left:15px;top:0px;
+			}
+			#laoshi div:nth-child(3){
+				width:30px;height: 30px;
+				border-radius: 30px;
+				background-color: #000000;
+				position: absolute;left:15px;top:30px;
+			}
+			#laoshi div:nth-child(4){
+				width:10px;height: 10px;
+				border-radius: 5px;
+				background-color: #000000;
+				position: absolute;left:25px;top:10px;
+			}
+			#laoshi div:nth-child(5){
+				width:10px;height: 10px;
+				border-radius: 5px;
+				background-color: #FFFFFF;
+				position: absolute;left:25px;top:40px;
+			}
+			#laowu{
+				width:60px;height: 60px;
+				border-radius: 30px;
+				background-color: #000000;
+				position: absolute;left: 100px;top:222px;
+				animation: zhuan 2s linear infinite;
+				
+			}
+			#laowu div:nth-child(1){
+				width:30px;height: 60px;
+				border-radius: 30px 0px 0px 30px;
+				background-color: #FFFFFF;
+				position: absolute;left:0px;top:0px;
+			}
+			#laowu div:nth-child(2){
+				width:30px;height: 30px;
+				border-radius: 30px;
+				background-color: #FFFFFF;
+				position: absolute;left:15px;top:0px;
+			}
+			#laowu div:nth-child(3){
+				width:30px;height: 30px;
+				border-radius: 30px;
+				background-color: #000000;
+				position: absolute;left:15px;top:30px;
+			}
+			#laowu div:nth-child(4){
+				width:10px;height: 10px;
+				border-radius: 5px;
+				background-color: #000000;
+				position: absolute;left:25px;top:10px;
+			}
+			#laowu div:nth-child(5){
+				width:10px;height: 10px;
+				border-radius: 5px;
+				background-color: #FFFFFF;
+				position: absolute;left:25px;top:40px;
+			}
+			@keyframes zhuan{
+				from{}
+				to{transform:rotate(360deg);}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			
+		
+		<div class="con">
+			<div class="box">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div id="laoda">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div id="laoe">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div id="laosan">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div id="laoshi">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div id="laowu">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+			<div class="gun">
+				
+			</div>
+		</div>
+		</div>
+	</body>
+</html>
