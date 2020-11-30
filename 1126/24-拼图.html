@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			.all{height:500px;border:2px solid red;display:flex;}
+			.example{flex:5;border:1px solid blue;}
+			.tu{flex:5;border:1px solid blue;position: relative;}
+			.other{flex:1;border:1px solid blue;}
+			.tu div,.example div{background-image: url(../img/xiaoxin.jpg);background-size: 150px; width:50px;height:50px;box-sizing: border-box;border:1px solid #000;position:absolute;}
+		</style>
+	</head>
+	<body>
+		<div class="all">
+			<div class="example"></div>
+			<div class="tu"></div>
+			<div class="other">
+				<p id="bushu"></p>
+				<p id="wuxiao"></p>
+			</div>
+		</div>
+	</body>
+</html>
+<script>
+	let example = document.querySelector(".example");
+	let tu = document.querySelector(".tu");
+	let other = document.querySelector(".other");
+	let hang = 3;
+	let lie = 3;
+	let kuan = 50;
+	let bushu = 0;
+	let wuxiao = 0;
+	
+	//初始化div 
+	initDiv();
+	
+	//打乱位置，洗牌
+	//随机获取2个，互换背景位置
+	randPosition();
+	
+	// 为所有div绑定点击事件，点击万完之后，能够移动键盘
+	let tDiv = document.querySelectorAll(".tu div");
+	for(let i=0;i<tDiv.length-1;i++){
+		tDiv[i].onclick=function(){
+			// 监听键盘的移动
+			window.onkeydown=function(event){
+				if(event.keyCode == 37){
+					// 左--先看看左边是否是空的.如果是空的，就可以移动过去
+					if(tDiv[i].style.left == "0px"){
+						 console.log("无效移动-已经到了最左边");
+						 setWuxiao();
+					}else{
+						 let left = tDiv[i].previousElementSibling;
+						 //判断左边一块是否是空的
+						 yiwei(left,tDiv[i]);
+					}
+				
+					// 要不左边是空的。那么背景位置多少?
+					//要不左边是有内容的，只要有，就判定为无效移动
+					
+				
+				}else if(event.keyCode == 38){
+					//上
+					if(tDiv[i].style.top == `0px`){
+						// 说明移动的是最shang边一块，判断为无效移动
+						setWuxiao()
+					}else{
+						 let left = tDiv[i].previousElementSibling.previousElementSibling.previousElementSibling;
+						 yiwei(left,tDiv[i]);
+						
+					}
+					
+				}else if(event.keyCode == 39){
+					if(tDiv[i].style.left == `${(lie-1)*kuan}px`){
+						// 说明移动的是最右边一块，判断为无效移动
+						 setWuxiao()
+					}else{
+						 let left = tDiv[i].nextElementSibling;
+						 yiwei(left,tDiv[i]);
+					}
+					
+				}else if(event.keyCode == 40){
+					//当前如果是最后一行，就不用移动了
+					if(tDiv[i].style.top==`${(hang-1)*50}px`){
+						console.log("无效移动。。。最后一行");
+						setWuxiao()
+					}else{
+						let xxy = tDiv[i].nextElementSibling.nextElementSibling.nextElementSibling;
+						 yiwei(xxy,tDiv[i]);
+					
+					}
+				}
+			}
+		}
+	}
+	
+	function getNumber(n){
+		return parseInt(Math.random()*n);
+	}
+	
+	function yiwei(left,ziji){
+		if(left.style.background == "none"){
+			 //实现移动
+			left.style.backgroundImage="url(../img/xiaoxin.jpg)";
+			left.style.backgroundPosition = ziji.style.backgroundPosition;				
+			left.style.backgroundSize=`${(lie)*kuan}px`;
+			ziji.style.background="none";
+			
+			bushu = bushu + 1;
+			document.querySelector("#bushu").innerHTML=bushu;
+			
+		 }else{
+			 //判定为无效移动
+			 console.log("无效移动333");
+			 wuxiao = wuxiao+1;
+			 document.querySelector("#wuxiao").innerHTML=wuxiao;
+		}
+	}
+	
+	
+	function initDiv(){
+		for(let i=1;i<=hang;i++){
+			for(let k=1;k<=lie;k++){
+				if(i==hang && k == lie){
+					tu.innerHTML+=`<div style="left:${(k-1)*kuan}px;top:${(i-1)*kuan}px;background:none;"></div>`
+					example.innerHTML+=`<div style="left:${(k-1)*kuan}px;top:${(i-1)*kuan}px;background:none;"></div>`
+					break;
+				};
+				tu.innerHTML+=`
+					<div style="left:${(k-1)*kuan}px;top:${(i-1)*kuan}px;background-position:-${(k-1)*kuan}px -${(i-1)*kuan}px;"></div>
+				`	
+				example.innerHTML+=`
+					<div style="left:${(k-1)*kuan}px;top:${(i-1)*kuan}px;background-position:-${(k-1)*kuan}px -${(i-1)*kuan}px;"></div>
+				`	
+			}
+		}
+	}
+	
+	function randPosition(){
+		let allTu = document.querySelectorAll(".tu div");
+		
+		for(let i=0;i<100;i++){
+			let n1 = getNumber(allTu.length-1);
+			let n2 = getNumber(allTu.length-1);
+		
+			let one = allTu[n1]
+			let two = allTu[n2]
+			
+			let onel = one.style.backgroundPositionX;
+			let oneT = one.style.backgroundPositionY;
+			
+			let twol = two.style.backgroundPositionX;
+			let twoT = two.style.backgroundPositionY;
+			
+			one.style.backgroundPosition=`${twol} ${twoT}`;
+			two.style.backgroundPosition=`${onel} ${oneT}`;
+		}
+	}	
+
+	function setWuxiao(){
+		wuxiao = wuxiao+1;
+		document.querySelector("#wuxiao").innerHTML=wuxiao;
+	}
+</script>

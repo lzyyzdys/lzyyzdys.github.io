@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<h1 id="count">1</h1>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload=function(){
+		let count=document.getElementById("count");
+		/* for(let i=0;i<10;i++){
+			count.innerHTML=i;
+			
+		} */
+		/* 定时调用
+		 *可以将一个函数，每隔一段时间执行一次
+		 * 参数
+		 *1.回调函数，该函数会每隔一段时间被调用一次
+		 *2,每次调用间隔的时间，单位毫秒；
+		 * 
+		 * 返回值；
+		 * 			返回一个Number类型的数据；
+		 * 			这个数字用来作为定时器的唯一标识
+		 */
+		let num=1;
+		let timer = setInterval(function(){
+			count.innerHTML=num++;
+			if(num==11){
+				clearInterval(timer);
+			}
+		},500);
+		console.log(timer);
+		//clearInterval()可以用来关闭一个定时器
+		//方法中需要一个定时器的标识作为参数，这样将关闭标识的定时器
+			
+		
+	};
+</script>
